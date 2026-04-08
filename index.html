@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nurra Bubshait — IT & Cybersecurity | UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070b14;
+  --bg2: #0d1220;
+  --bg3: #111827;
+  --surface: #161e2e;
+  --surface2: #1e2a3d;
+  --border: rgba(99,120,160,0.18);
+  --border2: rgba(99,120,160,0.32);
+  --text: #e8edf5;
+  --text2: #8a97ae;
+  --text3: #5a6880;
+  --accent: #38bdf8;
+  --accent2: #818cf8;
+  --accent3: #34d399;
+  --glow: rgba(56,189,248,0.18);
+  --glow2: rgba(129,140,248,0.15);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(7,11,20,0.82);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  font-family: var(--font-mono);
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 7px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--accent); color: var(--bg); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: 0.3s; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(56,189,248,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(129,140,248,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 80% 20%, rgba(52,211,153,0.05) 0%, transparent 60%);
+}
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99,120,160,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,120,160,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid rgba(56,189,248,0.25);
+  background: rgba(56,189,248,0.06);
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-tag::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent3);
+  box-shadow: 0 0 6px var(--accent3);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.0;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-name .line2 {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232,237,245,0.25);
+}
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text2);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-title span { color: var(--accent2); }
+.hero-tagline {
+  font-size: 1.1rem;
+  color: var(--text2);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.hero-tagline strong { color: var(--text); font-weight: 500; }
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px 26px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 20px rgba(56,189,248,0.25);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 24px rgba(56,189,248,0.4); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text2);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 12px 26px;
+  border-radius: 5px;
+  border: 1px solid var(--border2);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeUp 1s 0.8s ease both;
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 1.8s ease infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label { font-size: 12px; color: var(--text3); font-family: var(--font-mono); margin-top: 2px; }
+
+/* ── SECTIONS ── */
+section { padding: 7rem 2.5rem; position: relative; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.section-sub {
+  color: var(--text2);
+  font-size: 1rem;
+  max-width: 520px;
+  font-weight: 300;
+}
+.section-header { margin-bottom: 4rem; }
+
+/* ── ABOUT ── */
+#about { background: var(--bg2); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-text p {
+  color: var(--text2);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+.about-text p strong { color: var(--text); font-weight: 500; }
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.highlight-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text2);
+  font-family: var(--font-mono);
+  transition: border-color 0.2s, color 0.2s;
+}
+.highlight-pill:hover { border-color: var(--accent); color: var(--accent); }
+.hp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); flex-shrink: 0; }
+.about-visual {
+  position: relative;
+}
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+}
+.about-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--bg);
+  margin-bottom: 1.25rem;
+}
+.about-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+.about-card .role { font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin-bottom: 1.5rem; }
+.about-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+.about-detail-row:first-of-type { border-top: none; }
+.adr-icon { color: var(--accent2); font-size: 14px; width: 16px; }
+
+/* ── SKILLS ── */
+#skills { background: var(--bg); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: border-color 0.25s, transform 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, var(--glow), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.skill-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+.skill-card:hover::after { opacity: 1; }
+.skill-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+.ic-cyber { background: rgba(56,189,248,0.1); }
+.ic-ux { background: rgba(129,140,248,0.1); }
+.ic-dev { background: rgba(52,211,153,0.1); }
+.ic-net { background: rgba(251,191,36,0.1); }
+.ic-db { background: rgba(251,113,133,0.1); }
+.ic-soft { background: rgba(167,139,250,0.1); }
+.skill-card h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  background: var(--bg);
+  transition: all 0.2s;
+  cursor: default;
+}
+.skill-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(56,189,248,0.05); }
+.skill-tag.purple:hover { border-color: var(--accent2); color: var(--accent2); }
+.skill-tag.green:hover { border-color: var(--accent3); color: var(--accent3); }
+
+/* ── PROJECTS ── */
+#projects { background: var(--bg2); }
+.projects-tabs {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+  margin-bottom: 3rem;
+}
+.tab-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 9px 22px;
+  background: transparent;
+  border: none;
+  color: var(--text3);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-right: 1px solid var(--border);
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn.active { background: var(--accent); color: var(--bg); }
+.tab-btn:hover:not(.active) { background: var(--surface); color: var(--text2); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color 0.25s, transform 0.25s;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+.project-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.project-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.project-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid;
+}
+.badge-cyber { color: var(--accent); border-color: rgba(56,189,248,0.3); background: rgba(56,189,248,0.08); }
+.badge-ux { color: var(--accent2); border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.08); }
+.badge-full { color: var(--accent3); border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.08); }
+.project-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.project-desc { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; margin-bottom: 1.5rem; }
+.project-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.meta-label { font-family: var(--font-mono); font-size: 10px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+.meta-value { font-size: 13px; color: var(--text2); font-weight: 300; }
+.project-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.tool-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 9px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text3);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--bg); }
+.exp-timeline { position: relative; padding-left: 2rem; }
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+.exp-item {
+  position: relative;
+  margin-bottom: 3.5rem;
+}
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+}
+.exp-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.exp-org {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 1rem;
+}
+.exp-desc { font-size: 14px; color: var(--text2); font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
+.exp-skills { display: flex; flex-wrap: wrap; gap: 7px; }
+.exp-skill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(52,211,153,0.3);
+  color: var(--accent3);
+  background: rgba(52,211,153,0.05);
+}
+.exp-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ── CERTIFICATIONS ── */
+#certifications { background: var(--bg2); }
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.cert-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+.cert-icon {
+  width: 42px; height: 42px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.cert-icon.gold { background: rgba(251,191,36,0.12); }
+.cert-icon.blue { background: rgba(56,189,248,0.1); }
+.cert-icon.purple { background: rgba(129,140,248,0.1); }
+.cert-icon.green { background: rgba(52,211,153,0.1); }
+.cert-name { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
+.cert-issuer { font-family: var(--font-mono); font-size: 11px; color: var(--text3); }
+
+/* ── EDUCATION ── */
+.edu-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.edu-card:hover { border-color: var(--accent); }
+.edu-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2));
+}
+.edu-degree { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.edu-school { font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+.edu-year { font-size: 13px; color: var(--text3); }
+
+/* ── CONTACT ── */
+#contact { background: var(--bg); }
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+.contact-left p { font-size: 1rem; color: var(--text2); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 14px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  font-family: var(--font-mono);
+}
+.contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(4px); }
+.cl-icon { font-size: 16px; width: 20px; text-align: center; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-family: var(--font-mono); font-size: 11px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+.form-group input,
+.form-group textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text3); }
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(56,189,248,0.08); }
+.form-group textarea { min-height: 120px; margin-bottom: 1rem; }
+.form-submit {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: 8px;
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: var(--bg2);
+    padding: 2rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1.5rem;
+  }
+  .nav-links.open a { font-size: 15px; }
+  section { padding: 5rem 1.5rem; }
+  .about-grid, .exp-two-col, .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-grid, .projects-grid, .cert-grid, .edu-cards { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { gap: 2rem; }
+  .hero-stats { flex-wrap: wrap; }
+  #hero { padding: 7rem 1.5rem 3rem; }
+}
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .about-highlights { grid-template-columns: 1fr; }
+  .projects-tabs { width: 100%; flex-wrap: wrap; }
+  .tab-btn { flex: 1; }
+}
+footer {  
+  border-top: 1px solid var(--border); 
+  padding: 2.5rem; 
+  text-align: center; 
+  font-family: var(--font-mono); 
+  font-size: 12px; 
+  color: var(--text3); } 
+footer span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">NB<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">📍 Bahrain · Open to opportunities</div>
+    <h1 class="hero-name">
+      Nurra<br>
+      <span class="line2">Bubshait</span>
+    </h1>
+    <p class="hero-title">
+      IT & Cybersecurity · Networking · UX Designer
+    </p>
+    <p class="hero-tagline">
+      Bridging the gap between <strong>secure systems</strong> and <strong>human-centered design</strong> — building digital experiences that are both resilient and intuitive.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work →</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years studying cyber</div>
+      </div>
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">UX case studies</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div>
+        <div class="stat-num">BH</div>
+        <div class="stat-label">Based in Bahrain</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">01 — About</div>
+      <h2 class="section-title">Who I Am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm passionate about <strong>cybersecurity</strong>, focusing on protecting digital systems and uncovering vulnerabilities before they become threats.</p>
+        <p>My approach combines <strong>security-first thinking</strong> with a deep understanding of how people interact with technology </p>
+        <p>I thrive on complex problems and collaborative environments, building digital experiences that are <strong>resilient, reliable, and trusted</strong>.</p>
+        <div class="about-highlights">
+          <div class="highlight-pill"><div class="hp-dot"></div>Penetration Testing</div>
+          <div class="highlight-pill"><div class="hp-dot"></div>UX Research</div>
+          <div class="highlight-pill"><div class="hp-dot"></div>Security Operations Center (SOC)</div>
+          <div class="highlight-pill"><div class="hp-dot"></div>Figma & UI Design</div>
+          <div class="highlight-pill"><div class="hp-dot"></div>Network Security</div>
+          <div class="highlight-pill"><div class="hp-dot"></div>Full-Stack Dev</div>
+          <div class="highlight-pill"><div class="hp-dot"></div>Digital Forensics</div>
+          
+
+
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-card">
+          <div class="about-avatar">NB</div>
+          <h3>Nurra Bubshait</h3>
+          <div class="role">IT & Cybersecurity Graduate · UX Designer</div>
+          <div class="about-detail-row">
+            <span class="adr-icon">📍</span>
+            <span>Bahrain</span>
+          </div>
+          <div class="about-detail-row">
+            <span class="adr-icon">🎓</span>
+            <span>B.Sc. Cybersecurity — University of Bahrain</span>
+          </div>
+          <div class="about-detail-row">
+            <span class="adr-icon">🎨</span>
+            <span>UX Design Bootcamp — General Assembly</span>
+          </div>
+          <div class="about-detail-row">
+            <span class="adr-icon">🏅</span>
+            <span>CCNA · ISC2 CC · CTF Competitor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">02 — Skills</div>
+      <h2 class="section-title">Technical Arsenal</h2>
+      <p class="section-sub">A dual-discipline toolkit spanning offensive security and user experience design.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon ic-cyber">🛡️</div>
+        <h3>Cybersecurity</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Penetration Testing</span>
+          <span class="skill-tag">Burp Suite</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Cryptography</span>
+          <span class="skill-tag">Digital Forensics</span>
+          <span class="skill-tag">Security Auditing</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon ic-ux">🎨</div>
+        <h3>UX / UI Design</h3>
+        <div class="skill-tags">
+          <span class="skill-tag purple">Figma</span>
+          <span class="skill-tag purple">UX Research</span>
+          <span class="skill-tag purple">Personas</span>
+          <span class="skill-tag purple">UI Design</span>
+          <span class="skill-tag purple">Usability Testing</span>
+          <span class="skill-tag purple">Wireframing</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon ic-dev">💻</div>
+        <h3>Web & Programming</h3>
+        <div class="skill-tags">
+          <span class="skill-tag green">HTML</span>
+          <span class="skill-tag green">CSS</span>
+          <span class="skill-tag green">JavaScript</span>
+          <span class="skill-tag green">PHP</span>
+          <span class="skill-tag green">Python</span>
+          <span class="skill-tag green">Java</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon ic-net">🌐</div>
+        <h3>Networking</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">TCP/IP</span>
+          <span class="skill-tag">CCNA Fundamentals</span>
+          <span class="skill-tag">Network Analysis</span>
+          <span class="skill-tag">Routing & Switching</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon ic-db">🗄️</div>
+        <h3>Database</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Database Design</span>
+          <span class="skill-tag">Query Optimization</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon ic-soft">🧠</div>
+        <h3>Soft Skills</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Analytical Thinking</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Adaptability</span>
+          <span class="skill-tag">Team Collaboration</span>
+          <span class="skill-tag">Problem Solving</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">03 — Projects</div>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-sub">From secure back-end systems to human-centered UX redesigns.</p>
+    </div>
+    <div class="projects-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('tech')">Tech Projects</button>
+      <button class="tab-btn" onclick="switchTab('ux')">UX Case Studies</button>
+    </div>
+
+    <div id="tab-tech" class="tab-content active">
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon ic-cyber" style="background:rgba(56,189,248,0.1)">🔒</div>
+            <span class="project-badge badge-cyber">Cybersecurity</span>
+          </div>
+          <h3>Secure E-Voting System</h3>
+          <p class="project-desc">Designed and built an end-to-end encrypted voting platform addressing integrity, anonymity, and auditability in digital elections.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">Vulnerability of digital voting to tampering and identity fraud</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">End-to-end encrypted ballot with verified anonymity</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">Cryptography</span>
+            <span class="tool-tag">RSA Encryption</span>
+            <span class="tool-tag">Hashing</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon" style="background:rgba(251,191,36,0.1)">✈️</div>
+            <span class="project-badge badge-full">Backend</span>
+          </div>
+          <h3>Flight Arrival Client/Server System</h3>
+          <p class="project-desc">Built a multithreaded client-server architecture for real-time flight arrival data using socket programming and external API integration.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">Handling concurrent flight data requests efficiently</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">Stable concurrent connections with real-time API data</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">Multithreading</span>
+            <span class="tool-tag">Socket Programming</span>
+            <span class="tool-tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon" style="background:rgba(52,211,153,0.1)">🛒</div>
+            <span class="project-badge badge-full">Full Stack</span>
+          </div>
+          <h3>Supermarket Web Application</h3>
+          <p class="project-desc">Collaborated in a team to design and build a full-stack supermarket management system with product listings, cart, and admin dashboard.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">Manual inventory and customer order management</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">Streamlined full product lifecycle from browsing to checkout</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">HTML/CSS</span>
+            <span class="tool-tag">JavaScript</span>
+            <span class="tool-tag">PHP</span>
+            <span class="tool-tag">SQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-ux" class="tab-content">
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon ic-ux" style="background:rgba(129,140,248,0.1)">🍔</div>
+            <span class="project-badge badge-ux">UX Research</span>
+          </div>
+          <h3>Jahez — Usability Redesign</h3>
+          <p class="project-desc">Conducted a full usability audit of the Jahez food delivery app, identifying friction points and proposing redesigned flows to reduce order abandonment.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">High drop-off during checkout and poor filter discoverability</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">Redesigned checkout reduced steps by 40%</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">Figma</span>
+            <span class="tool-tag">User Interviews</span>
+            <span class="tool-tag">Heuristic Eval</span>
+            <span class="tool-tag">Personas</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon" style="background:rgba(56,189,248,0.1)">🏠</div>
+            <span class="project-badge badge-ux">Smart Home UX</span>
+          </div>
+          <h3>Baity — Smart Home Integration</h3>
+          <p class="project-desc">Designed a smart-home integration feature for Baity, focusing on intuitive device management and accessibility for non-technical users.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">Complexity of managing IoT devices for mainstream users</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">Simplified dashboard with guided onboarding flow</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">Figma</span>
+            <span class="tool-tag">Journey Mapping</span>
+            <span class="tool-tag">Wireframing</span>
+            <span class="tool-tag">Prototyping</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon" style="background:rgba(251,113,133,0.1)">🐾</div>
+            <span class="project-badge badge-ux">Mobile UX</span>
+          </div>
+          <h3>Paws & Poise — Booking Redesign</h3>
+          <p class="project-desc">End-to-end redesign of a pet service mobile booking app, improving appointment scheduling UX and visual hierarchy for a cleaner experience.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">Confusing booking flow with poor visual feedback</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">Booking completion rate improved with clearer CTA hierarchy</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">Figma</span>
+            <span class="tool-tag">Mobile Design</span>
+            <span class="tool-tag">Usability Testing</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon" style="background:rgba(167,139,250,0.1)">👗</div>
+            <span class="project-badge badge-ux">E-Commerce UX</span>
+          </div>
+          <h3>Simply Chic — E-Commerce UX</h3>
+          <p class="project-desc">Redesigned the browsing, filtering, and checkout experience for a fashion e-commerce platform, with a focus on reducing cognitive load.</p>
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-label">Problem</div>
+              <div class="meta-value">Overwhelming product discovery and a slow checkout process</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Impact</div>
+              <div class="meta-value">Cleaner filter system and streamlined 3-step checkout</div>
+            </div>
+          </div>
+          <div class="project-tools">
+            <span class="tool-tag">Figma</span>
+            <span class="tool-tag">Card Sorting</span>
+            <span class="tool-tag">A/B Testing</span>
+            <span class="tool-tag">High-fi Prototypes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">04 — Experience</div>
+      <h2 class="section-title">Work History</h2>
+    </div>
+    <div class="exp-two-col">
+      <div class="exp-timeline">
+        <div class="exp-item reveal">
+          <div class="exp-date">2023 — 2024 · Internship</div>
+          <div class="exp-role">Cybersecurity Intern</div>
+          <div class="exp-org">General Directorate of Anti-Corruption and Economic & Electronic Security — Bahrain</div>
+          <p class="exp-desc">Gained hands-on experience in a government cybersecurity unit, supporting operations in digital forensics investigations, network security monitoring, and internal security auditing. Worked alongside professionals on real-world cases involving electronic security and data integrity.</p>
+          <div class="exp-skills">
+            <span class="exp-skill">Digital Forensics</span>
+            <span class="exp-skill">Network Security</span>
+            <span class="exp-skill">Security Auditing</span>
+            <span class="exp-skill">Wireshark</span>
+            <span class="exp-skill">Incident Analysis</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-label" style="margin-bottom:1rem">Education</div>
+        <div class="edu-cards" style="grid-template-columns:1fr;gap:1rem">
+          <div class="edu-card">
+            <div class="edu-degree">B.Sc. Cybersecurity</div>
+            <div class="edu-school">University of Bahrain</div>
+            <div class="edu-year">Graduated 2024 · Bahrain</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">UX Design Bootcamp</div>
+            <div class="edu-school">General Assembly</div>
+            <div class="edu-year">Completed · Intensive Program</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">05 — Certifications & Achievements</div>
+      <h2 class="section-title">Credentials</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon gold">🏅</div>
+        <div>
+          <div class="cert-name">CCNA</div>
+          <div class="cert-issuer">Cisco Certified Network Associate</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon blue">🛡️</div>
+        <div>
+          <div class="cert-name">ISC2 Certified in Cybersecurity</div>
+          <div class="cert-issuer">ISC2 — CC Certification</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">06 — Contact</div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-left reveal">
+        <h2>Let's work<br><span style="color:var(--accent)">together.</span></h2>
+        <p>I'm actively looking for opportunities in cybersecurity and UX design — whether that's full-time roles, internships, or freelance projects. Let's build something great.</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/nurra-bubshait-3513b8298" target="_blank" class="contact-link">            <span class="cl-icon">💼</span>
+            <span>linkedin.com/in/nurrabubshait</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  Designed & built with care · Nurra Bubshait · Bahrain 🇧🇭 ·
+</footer>
+
+<script>
+// Nav toggle
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// Tab switching
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+  // re-trigger reveal for newly visible cards
+  observeAll();
+}
+
+// Scroll reveal
+function observeAll() {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => { if (!el.classList.contains('visible')) obs.observe(el); });
+}
+observeAll();
+
+// Contact form submit
+function handleContactSubmit(btn) {
+  const name = btn.closest('div').querySelector('input[type=text]').value;
+  const email = btn.closest('div').querySelector('input[type=email]').value;
+  const msg = btn.closest('div').querySelector('textarea').value;
+  if (!name || !email || !msg) {
+    btn.textContent = '⚠ Please fill all fields';
+    btn.style.background = 'rgba(248,113,113,0.3)';
+    btn.style.color = '#f87171';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2200);
+    return;
+  }
+  btn.textContent = 'Sending...';
+  setTimeout(() => {
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'rgba(52,211,153,0.25)';
+    btn.style.color = 'var(--accent3)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  }, 1400);
+}
+
+// Nav scroll shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.borderBottomColor =
+    window.scrollY > 40 ? 'rgba(99,120,160,0.3)' : 'rgba(99,120,160,0.18)';
+});
+</script>
+</body>
+</html>
